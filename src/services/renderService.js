@@ -16,6 +16,7 @@ export const renderTasks = (tasks = []) => {
       "col-12",
       "mb-2"
     );
+    cardContiner.id = `${id}taskFilterCompleted`;
     const cardHeader = document.createElement("div");
     cardHeader.classList.add("card-header", "p-4", "center", "flex-column");
 
@@ -43,9 +44,9 @@ export const renderTasks = (tasks = []) => {
     const endDateTaskSpan = document.createElement("span");
 
     const fromCheck = document.createElement("div");
-    fromCheck.classList.add("form-check");
+    fromCheck.classList.add("form-check", "d-flex", "justify-content-center");
     const checkBox = document.createElement("input");
-    checkBox.classList.add("form-check-input");
+    checkBox.classList.add("form-check-input", "me-3");
     const labelCheckBox = document.createElement("label");
     labelCheckBox.classList.add("form-check-label");
 

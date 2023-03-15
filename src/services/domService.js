@@ -36,3 +36,7 @@ export const EDIT_CANCEL_BTN = document.querySelector("#edit-cancel-btn");
 export const NO_TASKS_DISPLAY = document.querySelector("#no-tasks-display");
 // כפתור מחיקת משימות
 export const DELETE_TASKS_BTN = document.querySelector("#delete-all-btn");
+// כפתור הסתרת משימות שהושלמו
+export const HIDE_COMPLECTED_TASKS_BTN = document.querySelector(
+  "#hide-completed-btn"
+);

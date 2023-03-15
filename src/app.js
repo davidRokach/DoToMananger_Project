@@ -1,7 +1,8 @@
 import PAGES from "./models/pageModel.js";
-import { Tasks } from "./models/taskModel.js";
 import { onChangePage } from "./routes/router.js";
 import {
+  HideCompletedTasks,
+  ShowCompletedTasks,
   handleCancelCreateTask,
   handleCreateTask,
   onCreateNewTask,
@@ -11,6 +12,7 @@ import { displayTasks } from "./services/displayModeService.js";
 import {
   ADD_TASK_BTN,
   DELETE_TASKS_BTN,
+  HIDE_COMPLECTED_TASKS_BTN,
   HOME_PAGE_LINK,
 } from "./services/domService.js";
 import {
@@ -45,6 +47,24 @@ displayTasks(); // הצגת המשימות במידה של הפעלה מחדש �
 // מחקימת כל המשימות
 DELETE_TASKS_BTN.addEventListener("click", () => {
   removeItemFromLocalStorage("tasks");
+  removeItemFromLocalStorage("allTasks");
+
+  displayTasks();
+});
+
+// סינון המשימות שהושלמו
+HIDE_COMPLECTED_TASKS_BTN.addEventListener("click", () => {
+  tasks = JSON.parse(getItemFromLocalStorage("tasks"));
+
+  if (HIDE_COMPLECTED_TASKS_BTN.innerText === ` Hide completed tasks`) {
+    HIDE_COMPLECTED_TASKS_BTN.innerHTML = `<i class="bi bi-filter"></i>
+     Show completed tasks`;
+    HideCompletedTasks(tasks);
+    displayTasks();
+    return;
+  }
+  HIDE_COMPLECTED_TASKS_BTN.innerHTML = `<i class="bi bi-filter"></i> Hide completed tasks`;
+  ShowCompletedTasks(tasks);
   displayTasks();
 });
 

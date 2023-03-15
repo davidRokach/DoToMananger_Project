@@ -5,6 +5,7 @@ import {
 } from "./TaskService.js";
 import {
   DELETE_TASKS_BTN,
+  HIDE_COMPLECTED_TASKS_BTN,
   NEW_TASK_OUTPUT,
   NO_TASKS_DISPLAY,
 } from "./domService.js";
@@ -18,14 +19,16 @@ export const displayTasks = () => {
     // אם אין משימות להציג
     NO_TASKS_DISPLAY.className = "mt-4 d-block";
     DELETE_TASKS_BTN.className = "d-none";
+    HIDE_COMPLECTED_TASKS_BTN.className = "d-none";
     NEW_TASK_OUTPUT.innerHTML = "";
-
     renderTasks(tasks);
     return;
   }
   // יש משימות להציג
   NO_TASKS_DISPLAY.className = "d-none";
   DELETE_TASKS_BTN.className = "btn btn-outline-danger d-block";
+  HIDE_COMPLECTED_TASKS_BTN.className = "btn btn-secondary mb-3";
+
   renderTasks(tasks);
 
   tasks.forEach((task) => {
@@ -36,6 +39,7 @@ export const displayTasks = () => {
     // הוספת פונקציות נוספות
     addDatePasses(task, task.id); // בדיקה אם תאריך יעד עבר
     Completed(task.id); // הוספת הצגה למקרה שהמשימה הושלמה
+    // filterCompleted(task.status, task.id);
   });
 };
 
@@ -80,3 +84,11 @@ const Completed = (id) => {
     onCompletedTask(id, completedTask);
   });
 };
+// const filterCompleted = (status, id) => {
+//   HIDE_COMPLECTED_TASKS_BTN.addEventListener("click", () => {
+//     if (status === 1) {
+//       const taskContiner = document.getElementById(`${id}taskFilterCompleted`);
+//       taskContiner.className = "d-none";
+//     }
+//   });
+// };
