@@ -2,7 +2,6 @@ import PAGES from "./models/pageModel.js";
 import { onChangePage } from "./routes/router.js";
 import {
   HideCompletedTasks,
-  ShowCompletedTasks,
   handleCancelCreateTask,
   handleCreateTask,
   onCreateNewTask,
@@ -55,17 +54,9 @@ DELETE_TASKS_BTN.addEventListener("click", () => {
 // סינון המשימות שהושלמו
 HIDE_COMPLECTED_TASKS_BTN.addEventListener("click", () => {
   tasks = JSON.parse(getItemFromLocalStorage("tasks"));
-
-  if (HIDE_COMPLECTED_TASKS_BTN.innerText === ` Hide completed tasks`) {
-    HIDE_COMPLECTED_TASKS_BTN.innerHTML = `<i class="bi bi-filter"></i>
-     Show completed tasks`;
-    HideCompletedTasks(tasks);
-    displayTasks();
-    return;
-  }
-  HIDE_COMPLECTED_TASKS_BTN.innerHTML = `<i class="bi bi-filter"></i> Hide completed tasks`;
-  ShowCompletedTasks(tasks);
+  HideCompletedTasks(tasks);
   displayTasks();
+  return;
 });
 
 // עריכת משימה

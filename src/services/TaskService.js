@@ -190,42 +190,10 @@ export const handleDeleteTask = (id) => {
 };
 // סינון המשימות שהושלמו
 export const HideCompletedTasks = (tasks) => {
-  const findTasks = tasks.filter((task) => task.status === 1);
   const filterTasks = tasks.filter((task) => task.status === 0);
-
-  if (findTasks.length === 0) {
-    return;
-  }
   setItemInLocalStorage("tasks", JSON.stringify(filterTasks));
-  setItemInLocalStorage("allTasks", JSON.stringify(tasks));
-
-  // if (findTasks.length === 0) {
-  //   if (!getItemFromLocalStorage("allTasks")) {
-  //     return;
-  //   }
-  //   const allTasks = JSON.parse(getItemFromLocalStorage("allTasks"));
-  //   setItemInLocalStorage("tasks", JSON.stringify(allTasks));
-  //   return;
-  // }
-
-  // const allTasks = JSON.parse(getItemFromLocalStorage("allTasks"));
-  // const newAllTask = allTasks.concat(findTasks);
-  // setItemInLocalStorage("allTasks", JSON.stringify(newAllTask));
 };
 
-export const ShowCompletedTasks = (tasks) => {
-  const allTasks = JSON.parse(getItemFromLocalStorage("allTasks"));
-  const filterAllTasks = allTasks.filter((task) => task.status === 0);
-
-  const findTasks = tasks.filter((task) => task.status === 1);
-  const filterTasks = tasks.filter((task) => task.status === 0);
-
-  if (findTasks === 0 && filterAllTasks.length === filterTasks.length) {
-    return;
-  }
-
-  setItemInLocalStorage("tasks", JSON.stringify(allTasks));
-};
 // השלמת משימה
 export const onCompletedTask = (id, checkBox) => {
   const tasks = JSON.parse(getItemFromLocalStorage("tasks"));
